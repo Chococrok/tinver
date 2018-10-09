@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tsr="http://airbusds.com/twmu/stw-request" xmlns:tty="http://airbusds.com/twmu/twmu-types" xmlns:tts="http://airbusds.com/twmu/ws-types">
+      <soap:Body>
+        <tsr:stopTaskingWindowRequest>
+          <tsr:header>
+            <tty:productionDate>2018-05-09T07:58:38Z</tty:productionDate>
+            <tty:producer>
+              <tty:center>MCC</tty:center>
+              <tty:unit>TWMU</tty:unit>
+            </tty:producer>
+            <tty:receiver>
+              <tty:center>MCC</tty:center>
+              <tty:unit>TWMU</tty:unit>
+            </tty:receiver>
+          </tsr:header>
+          <tsr:tcUploadStatusType>UPLOADED</tsr:tcUploadStatusType>
+        </tsr:stopTaskingWindowRequest>
+      </soap:Body>
+    </soap:Envelope>
