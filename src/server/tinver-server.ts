@@ -1,6 +1,6 @@
+import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import { Response } from 'express-serve-static-core';
-import * as winston from 'winston';
 import { Configuration } from '../services/configuration/configuration';
 import { LoggerService } from '../services/logger.service';
 
@@ -12,6 +12,7 @@ export class TinverServer {
 
   constructor(conf: Configuration) {
     this.conf = conf;
+    this.app.use(bodyParser.json());
   }
 
   public serve() {
@@ -30,7 +31,13 @@ export class TinverServer {
 
   private enableLogRequest() {
     this.app.use((req, res, next) => {
-      this.logger.info(`${req.method}: ${req.url}`);
+      let toLog = `${req.method}: ${req.originalUrl}`;
+
+      if (this.conf.verbose && req.body) {
+        toLog = `${toLog} ${JSON.stringify(req.body)}`;
+      }
+
+      this.logger.info(toLog);
       next();
     });
   }

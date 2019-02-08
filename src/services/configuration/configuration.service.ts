@@ -29,8 +29,12 @@ export class ConfigurationService {
           conf.path = args.shift();
           break;
 
-        case '--silent' || '-s':
+        case '--silent': case '-s':
           conf.silent = true;
+          break;
+
+        case '--verbose': case '-v':
+          conf.verbose = true;
           break;
 
         default:

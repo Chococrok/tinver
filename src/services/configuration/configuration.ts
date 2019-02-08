@@ -4,4 +4,5 @@ export class Configuration {
   public content: string;
   public path: string;
   public silent: boolean = false;
+  public verbose: boolean = false;
 }
