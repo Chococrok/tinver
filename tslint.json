@@ -6,26 +6,13 @@
   "jsRules": {},
   "rules": {
     "quotemark": {
-      "options": "double"
+      "options": "single"
     },
     "arrow-parens":false,
     "member-ordering": [
       true,
       {
-        "order": [
-          "private-static-field",
-          "public-static-field",
-          "private-instance-field",
-          "public-instance-field",
-          "private-constructor",
-          "public-constructor",
-          "private-static-method",
-          "protected-static-method",
-          "public-static-method",
-          "private-instance-method",
-          "protected-instance-method",
-          "public-instance-method"
-        ]
+        "order": "fields-first"
       }
     ]
   },
