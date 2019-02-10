@@ -1,7 +1,16 @@
-import * as winston from "winston";
+import * as winston from 'winston';
 
 export abstract class LoggerService {
+
   private static WINSTON_LOGGER: winston.Logger;
+
+  public static getLogger(): winston.Logger {
+    if (!LoggerService.WINSTON_LOGGER) {
+      this.configureLogger();
+    }
+
+    return LoggerService.WINSTON_LOGGER;
+  }
 
   private static configureLogger() {
     LoggerService.WINSTON_LOGGER = winston.createLogger({
@@ -16,14 +25,6 @@ export abstract class LoggerService {
         new winston.transports.Console(),
       ],
     });
-  }
-
-  public static getLogger(): winston.Logger {
-    if (!LoggerService.WINSTON_LOGGER) {
-      this.configureLogger();
-    }
-
-    return LoggerService.WINSTON_LOGGER;
   }
 
 }
