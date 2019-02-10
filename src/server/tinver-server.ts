@@ -12,7 +12,7 @@ export class TinverServer {
 
   constructor(conf: Configuration) {
     this.conf = conf;
-    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.text({ type: '*/*' }));
   }
 
   public serve() {
@@ -34,7 +34,7 @@ export class TinverServer {
       let toLog = `${req.method}: ${req.originalUrl}`;
 
       if (this.conf.verbose && req.body) {
-        toLog = `${toLog} ${JSON.stringify(req.body)}`;
+        toLog = `${toLog} ${req.body}`;
       }
 
       this.logger.info(toLog);
