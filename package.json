@@ -1,16 +1,24 @@
 {
-  "name": "mpu-simu",
+  "name": "tinver",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple cli tool that allows you to launch a server in no time.",
+  "bin": "./dist/index.js",
   "scripts": {
     "compile": "tsc",
-    "start": "node dist/tinver.js",
+    "start": "node dist/index.js",
     "clean": "rm -r dist || echo 'no dist here !'",
-    "lint": "tslint -p . && echo 'no lint errors :)'"
+    "lint": "tslint -p . && echo 'no lint errors :)'",
+    "prepublish": "npm run clean && npm run lint && npm run compile"
   },
   "author": "Chococrok",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chococrok/tinver"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "express": "4.16.3",
     "winston": "3.1.0"

@@ -1,4 +1,5 @@
-import winston = require('winston');
+import * as path from 'path';
+import * as winston from 'winston';
 import { LoggerService } from '../logger.service';
 import { Configuration } from './configuration';
 
@@ -8,6 +9,8 @@ export class ConfigurationService {
 
   public static getConfiguration = (): Configuration => {
     const conf: Configuration = new Configuration();
+    const helpMsg = 'arguments available: --port, --uri, --content, --file, --silent, --verbose';
+
     const args = process.argv.slice(2);
 
     while (args.length > 0) {
@@ -26,7 +29,8 @@ export class ConfigurationService {
           break;
 
         case '--file': case '-f':
-          conf.path = args.shift();
+          const filePath = path.resolve(args.shift());
+          conf.path = path.resolve(filePath);
           break;
 
         case '--silent': case '-s':
@@ -37,8 +41,15 @@ export class ConfigurationService {
           conf.verbose = true;
           break;
 
+        case '--help': case '-h':
+          ConfigurationService.logger.info(helpMsg);
+          return undefined;
+
         default:
-          ConfigurationService.logger.warn(`Ignoring unknown argument: ${arg}`);
+          ConfigurationService.logger.error(`Unknown argument: ${arg}`);
+          ConfigurationService.logger.error(helpMsg);
+
+          throw new Error();
       }
     }
 
