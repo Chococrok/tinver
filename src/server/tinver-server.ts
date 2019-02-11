@@ -24,8 +24,8 @@ export class TinverServer {
       this.handleRequest(res);
     });
 
-    this.app.listen(this.conf.port, 'localhost', () => {
-      this.logger.info(`Listening at http://localhost:${this.conf.port}${this.conf.uri}`);
+    this.app.listen(this.conf.port, '0.0.0.0', () => {
+      this.logger.info(`Listening at http://0.0.0.0:${this.conf.port}${this.conf.uri}`);
     });
   }
 
